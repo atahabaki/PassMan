@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PassMan</string>
+    <string name="modulo3_plain">Plain data</string>
+    <string name="modulo3_plain_explain">This is the \"plain\" data to be encrypted via an one way encryption algorithm called \"modulo3\" by the given key.</string>
+    <string name="modulo3_key">Key</string>
+    <string name="modulo3_key_explain">This is the key to encrypt the "plain data".</string>
+</resources>
