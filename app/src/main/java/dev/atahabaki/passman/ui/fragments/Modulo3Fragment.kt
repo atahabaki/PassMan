@@ -38,11 +38,11 @@ class Modulo3Fragment : Fragment(R.layout.modulo3_fragment) {
     }
 
     private fun modulo3Action() {
-        var key_length = binding.modulo3PlainTextField.editText?.text.toString().length
-        var err = validate()
+        val key_length = binding.modulo3PlainTextField.editText?.text.toString().length
+        val err = validate()
         if (err != FormError.NON) showSnackErr(err, key_length)
         else {
-            var res = modulo3(binding.modulo3PlainTextField.editText?.text.toString().trim(),
+            val res = modulo3(binding.modulo3PlainTextField.editText?.text.toString().trim(),
                     binding.modulo3KeyTextField.editText?.text.toString().trim())!!
             copyToClipBoard(res)
             resetAll()
@@ -76,13 +76,12 @@ class Modulo3Fragment : Fragment(R.layout.modulo3_fragment) {
     }
 
     private fun fillKey(length: Int) {
-        var keygen = randomizeKey(length)
-        binding.modulo3KeyTextField.editText?.setText(keygen)
+        binding.modulo3KeyTextField.editText?.setText(randomizeKey(length))
     }
 
     private fun randomizeKey(length: Int): String {
         TODO("Currently is buggy. Fix it.")
-        var specialChars="!@#\$%^&*()_+-=1234567890,/;'\\[]{}|<>?`~"
+        val specialChars="!@#\$%^&*()_+-=1234567890,/;'\\[]{}|<>?`~"
         var i = 0
         var key = "";
         while (i < length) {
@@ -97,19 +96,19 @@ class Modulo3Fragment : Fragment(R.layout.modulo3_fragment) {
     }
 
     private fun validate(): FormError {
-        var plain = binding.modulo3PlainTextField.editText?.text.toString().trim()
-        var key = binding.modulo3KeyTextField.editText?.text.toString().trim()
-        if (plain.equals("") && key.equals(""))
-            return FormError.BOTH_EMPTY
+        val plain = binding.modulo3PlainTextField.editText?.text.toString().trim()
+        val key = binding.modulo3KeyTextField.editText?.text.toString().trim()
+        return if (plain.equals("") && key.equals(""))
+            FormError.BOTH_EMPTY
         else if (plain.equals(""))
-            return FormError.PLAIN_EMPTY
+            FormError.PLAIN_EMPTY
         else if (key.equals(""))
-            return FormError.KEY_EMPTY
+            FormError.KEY_EMPTY
         else if (key.length !=  plain.length)
-            return FormError.LENGTH_NOT_EQUAL
+            FormError.LENGTH_NOT_EQUAL
         else if (key.length == plain.length)
-            return FormError.NON
-        else return FormError.OTHER
+            FormError.NON
+        else FormError.OTHER
     }
 
     private fun modulo3(plain: String, key: String): String? {

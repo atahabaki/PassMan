@@ -13,4 +13,8 @@
     <string name="modulo3_unn_err">Unknown error occured.</string>
     <string name="modulo3_copied">Encrypted data copied to clipboard. Be careful about where you\'re pasting it.</string>
     <string name="modulo3_action">FILL</string>
+    <string name="bottom_app_menu_search">Search</string>
+    <string name="bottom_app_menu_search_description">Search something</string>
+    <string name="bottom_app_menu_more">More</string>
+    <string name="bottom_app_menu_more_description">More actions</string>
 </resources>
