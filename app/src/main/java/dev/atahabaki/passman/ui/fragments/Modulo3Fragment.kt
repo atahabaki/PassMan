@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
@@ -38,6 +39,7 @@ class Modulo3Fragment : Fragment(R.layout.modulo3_fragment) {
     }
 
     private fun modulo3Action() {
+        hideKeyboard()
         val key_length = binding.modulo3PlainTextField.editText?.text.toString().length
         val err = validate()
         if (err != FormError.NON) showSnackErr(err, key_length)
@@ -49,9 +51,15 @@ class Modulo3Fragment : Fragment(R.layout.modulo3_fragment) {
         }
     }
 
+    private fun hideKeyboard() {
+        val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view!!.windowToken, 0)
+    }
+
     private fun resetAll() {
         binding.modulo3PlainTextField.editText?.setText("")
         binding.modulo3KeyTextField.editText?.setText("")
+        binding.modulo3PlainTextField.isErrorEnabled = false
     }
 
     private fun copyToClipBoard(copyThis: String) {
@@ -63,7 +71,7 @@ class Modulo3Fragment : Fragment(R.layout.modulo3_fragment) {
 
     private fun showSnackErr(formError: FormError, length: Int) {
         when (formError) {
-            FormError.PLAIN_EMPTY -> showSnackBar(R.string.modulo3_plain_empty)
+            FormError.PLAIN_EMPTY -> showPlainErr(R.string.modulo3_plain_empty)
             FormError.KEY_EMPTY -> Snackbar.make(binding.root,R.string.modulo3_key_empty,Snackbar.LENGTH_LONG)
                     .setAction(R.string.modulo3_action) {
                         fillKey(length)
@@ -75,17 +83,22 @@ class Modulo3Fragment : Fragment(R.layout.modulo3_fragment) {
         }
     }
 
+    private fun showPlainErr(@StringRes resId: Int) {
+        showSnackBar(resId)
+        binding.modulo3PlainTextField.isErrorEnabled = true
+        binding.modulo3PlainTextField.error = getString(resId)
+    }
+
     private fun fillKey(length: Int) {
         binding.modulo3KeyTextField.editText?.setText(randomizeKey(length))
     }
 
     private fun randomizeKey(length: Int): String {
-        TODO("Currently is buggy. Fix it.")
         val specialChars="!@#\$%^&*()_+-=1234567890,/;'\\[]{}|<>?`~"
         var i = 0
-        var key = "";
+        var key = ""
         while (i < length) {
-            key += specialChars[(0..specialChars.length).random()]
+            key += specialChars[(0 until specialChars.length-1).random()]
             i++
         }
         return key
