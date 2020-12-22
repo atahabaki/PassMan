@@ -3,14 +3,14 @@
     <string name="package_name">dev.atahabaki.passman</string>
     <string name="modulo3_plain">Plain data</string>
     <string name="modulo3_action_btn">modulo3!</string>
-    <string name="modulo3_plain_explain">This is the \"plain\" data to be encrypted via an one way encryption algorithm called \"modulo3\" by the given key.</string>
+    <string name="modulo3_plain_explain">This\'ll be encrypted via modulo3 algorithm.</string>
     <string name="modulo3_key">Key</string>
     <string name="modulo3_key_explain">This is the key to encrypt the "plain data".</string>
     <string name="modulo3_key_empty">Please, fill the key. Do you want me to fill it out?</string>
     <string name="modulo3_plain_empty">Please, fill the plain data, your message. ;D</string>
     <string name="modulo3_both_empty">Please, fill all of them.</string>
     <string name="modulo3_length_nt">Their length should be equal.</string>
-    <string name="modulo3_unn_err">Unknown error occured.</string>
+    <string name="modulo3_unn_err">Unknown error occurred.</string>
     <string name="modulo3_copied">Encrypted data copied to clipboard. Be careful about where you\'re pasting it.</string>
     <string name="modulo3_action">FILL</string>
     <string name="bottom_app_menu_search">Search</string>
